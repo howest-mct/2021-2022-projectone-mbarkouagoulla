@@ -32,3 +32,30 @@ class DataRepository:
         sql = "UPDATE lampen SET status = %s"
         params = [status]
         return Database.execute_sql(sql, params)
+    
+    #####################
+    @staticmethod
+    def read_gebruikers():
+        sql = "SELECT * from gebruikers"
+        return Database.get_rows(sql)
+    
+    @staticmethod
+    def read_gebruikers_by_id(id):
+        sql = "SELECT * from gebruikers WHERE gebruikerID = %s"
+        params = [id]
+        return Database.get_one_row(sql, params)
+    
+    @staticmethod
+    def read_rfid_alle_gebruikers():
+        sql = "SELECT `RFID-code` from gebruikers"
+        return Database.get_rows(sql)
+    @staticmethod
+    def read_rfid_gebruiker(gebruikersnaam):
+        sql = "SELECT `RFID-code` from gebruikers Where Naam = %s"
+        params = [gebruikersnaam]
+        return Database.get_one_row(sql,params)
+    @staticmethod
+    def update_rfid_gebruiker(naam, code):
+        sql = "UPDATE gebruikers SET `RFID-code` = %s WHERE Naam = %s"
+        params = [code, naam]
+        return Database.execute_sql(sql, params)
