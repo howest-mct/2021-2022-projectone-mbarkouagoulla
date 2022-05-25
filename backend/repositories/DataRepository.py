@@ -41,7 +41,7 @@ class DataRepository:
     
     @staticmethod
     def read_gebruikers_by_id(id):
-        sql = "SELECT * from gebruikers WHERE gebruikerID = %s"
+        sql = "SELECT Voornaam from gebruikers WHERE gebruikerID = %s"
         params = [id]
         return Database.get_one_row(sql, params)
     
@@ -49,13 +49,24 @@ class DataRepository:
     def read_rfid_alle_gebruikers():
         sql = "SELECT `RFID-code` from gebruikers"
         return Database.get_rows(sql)
+
+    @staticmethod
+    def read_gebruikers_by_rfid(rfid):
+        sql = "SELECT Voornaam from gebruikers WHERE `RFID-code` = %s"
+        params = [rfid]
+        return Database.get_one_row(sql, params)
+
     @staticmethod
     def read_rfid_gebruiker(gebruikersnaam):
         sql = "SELECT `RFID-code` from gebruikers Where Naam = %s"
         params = [gebruikersnaam]
         return Database.get_one_row(sql,params)
+        
     @staticmethod
     def update_rfid_gebruiker(naam, code):
         sql = "UPDATE gebruikers SET `RFID-code` = %s WHERE Naam = %s"
         params = [code, naam]
         return Database.execute_sql(sql, params)
+    
+
+    
