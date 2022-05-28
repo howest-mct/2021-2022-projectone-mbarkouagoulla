@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Smart Letterbox</title>
+    <link rel="stylesheet" href="style/screen.css" />
+    <script
+      src="https://cdn.socket.io/4.0.1/socket.io.min.js"
+      integrity="sha384-LzhRnpGmQP+lOvWruF/lgkcqD+WDVt9fU3H4BWmwP5u5LTmkUGafMcpZKNObVMLU"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://kit.fontawesome.com/ad45c53ffe.js" crossorigin="anonymous"></script>
+    <script src="script/app2.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        toggleNav();
+      });
+      function toggleNav() {
+        const menu = document.querySelector('#mobile-menu');
+        const menuLinks = document.querySelector('.navbar__menu');
+        menu.addEventListener('click', function () {
+          menu.classList.toggle('is-active');
+          menuLinks.classList.toggle('active');
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar__container">
+        <a href="index.html" id="navbar__logo"
+          ><i class="fa-solid fa-envelopes-bulk"></i> Smart Letterbox</a
+        >
+        <div class="navbar__toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="index.html" class="navbar__links"> Home </a>
+          </li>
+          <li class="navbar__item">
+            <a href="/" class="navbar__links"> Tech </a>
+          </li>
+          <li class="navbar__item">
+            <a href="/" class="navbar__links"> Products </a>
+          </li>
+          <li class="navbar__btn">
+            <a href="/" class="button"> Sign up </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="c-content">
+      <h1 class="c-content__title">Gebruikers</h1>
+      <div class="c-sensors-info">
+        <div class="c-sensor c-sensor--header">
+          <div class="c-sensor__name">
+            <p>Naam</p>
+          </div>
+          <div class="c-sensor__fname">
+            <p>Voornaam</p>
+          </div>
+          <div class="c-sensor__email">
+            <p>Email-adres</p>
+          </div>
+        </div>
+      </div>
+      <div class="c-sensors js-sensors">
+        <div class="c-sensor">
+          <div class="c-sensor__info">
+            <h2 class="c-sensor__name">Menen</h2>
+          </div>
+          <div class="c-sensor__departure">10:00:00</div>
+          <div class="c-sensor__track">9</div>
+        </div>
+        <div class="c-sensor">
+          <div class="c-sensor__info">
+            <h2 class="c-sensor__name">Menen</h2>
+          </div>
+          <div class="c-sensor__departure">10:00:00</div>
+          <div class="c-sensor__track">9</div>
+        </div>
+        <div class="c-sensor">
+          <div class="c-sensor__info">
+            <h2 class="c-sensor__name">Menen</h2>
+          </div>
+          <div class="c-sensor__departure">10:00:00</div>
+          <div class="c-sensor__track">9</div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

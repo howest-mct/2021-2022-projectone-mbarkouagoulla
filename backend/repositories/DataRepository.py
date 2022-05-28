@@ -36,7 +36,7 @@ class DataRepository:
     #####################
     @staticmethod
     def read_gebruikers():
-        sql = "SELECT * from gebruikers"
+        sql = "SELECT Naam,Voornaam,`E-mail-adres` from gebruikers"
         return Database.get_rows(sql)
     
     @staticmethod

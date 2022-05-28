@@ -1,28 +1,45 @@
 import multiprocessing
 import RPi.GPIO as GPIO
-from mfrc522 import SimpleMFRC522
-from subprocess import check_output
-from RPi import GPIO
-from tabulate import tabulate
-from repositories.DataRepository import DataRepository
 import time
 import threading
+from mfrc522 import SimpleMFRC522
+from subprocess import check_output
+from tabulate import tabulate
+from repositories.DataRepository import DataRepository
+from helpers.klasseknop import Button
+
+from flask_cors import CORS
+from flask_socketio import SocketIO, emit, send
+from flask import Flask, jsonify
+from selenium import webdriver
+#######IN-OUT raspberry & variabelen#########
 GPIO.setmode(GPIO.BCM)
 lijst_pinnen = [16, 12, 25, 24, 23, 26, 19, 13]
 rs_pin = 21
 e_pin = 20
 servo_pin = 5
-reed_contact= 6
+reed_contact = 6
+show_lan = True
+list_ids = []
+teller = 0
+last_lcd_write = 0
 reader = SimpleMFRC522()
+#################################
 
-def setup():
+
+
+#######GPIO-settings#############
+def setup_gpio():
+    GPIO.setwarnings(False)
     GPIO.setup(lijst_pinnen, GPIO.OUT)
     GPIO.setup(rs_pin, GPIO.OUT)
     GPIO.setup(e_pin, GPIO.OUT)
     GPIO.setup(servo_pin, GPIO.OUT)
-    GPIO.setup(reed_contact, GPIO.IN,pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(reed_contact, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+#################################
 
 
+#######DISPLAY-settings########
 def set_data_bits(value):
     mask = 0b00000001
     for index in range(0, 8):
@@ -33,7 +50,6 @@ def set_data_bits(value):
             GPIO.output(pin, 0)
         mask = mask << 1
 
-
 def send_instruction(value):
     GPIO.output(rs_pin, 0)
     GPIO.output(e_pin, 1)
@@ -41,14 +57,12 @@ def send_instruction(value):
     GPIO.output(e_pin, 0)
     time.sleep(0.005)
 
-
 def send_character(value):
     GPIO.output(rs_pin, 1)
     GPIO.output(e_pin, 1)
     set_data_bits(value)
     GPIO.output(e_pin, 0)
     time.sleep(0.005)
-
 
 def write_message(value):
     i = 0
@@ -60,28 +74,27 @@ def write_message(value):
             send_instruction(0b10000000 | 0b01000000)
         send_character(ord(x))
 
-
 def init_LCD(cursorAan, cursorBlink):
     send_instruction(0x38)
     send_instruction(0b00001100 | (cursorAan << 1) | (cursorBlink << 0))
     send_instruction(1)
+#################################
 
 
+
+########IP-adressen##########
 # ip-adressen ophalen en eventueel printen
 ips = check_output(['hostname', '--all-ip-addresses'])
 ip = ips.decode(encoding='utf-8').strip()
 ip_adresses = ip.split()
+# print(ip_adresses)
 #################################
-show_lan = True
-list_ids = []
-teller = 0
-setup()
+setup_gpio()
 init_LCD(1, 1)
 servo = GPIO.PWM(servo_pin, 50)
 servo.start(7.5)
 # servo.ChangeDutyCycle(12)  # 3 is 0 graden, 12 is 180 graden
-last_lcd_write = 0
-# print(servo)
+
 
 
 def callback_reedcontact(channel):
@@ -89,7 +102,10 @@ def callback_reedcontact(channel):
     teller += 1
     print(f"YEAS {teller}")
 
-GPIO.add_event_detect(reed_contact, GPIO.RISING,callback=callback_reedcontact, bouncetime=10)
+
+GPIO.add_event_detect(reed_contact, GPIO.RISING,
+                      callback=callback_reedcontact, bouncetime=10)
+
 
 def lcd_ip():
     global show_lan, last_lcd_write  # globale variabelen oproepen in functie
@@ -108,7 +124,7 @@ def lcd_ip():
 
 
 def display_id():
-    global last_lcd_write,list_ids,servo # globale variabele oproepen in functie
+    global last_lcd_write, list_ids, servo  # globale variabele oproepen in functie
     while True:
         id, text = reader.read_no_block()  # uitlezen van de id en text
         if (id is None):  # als er niets wordt uitgelezen
@@ -135,6 +151,8 @@ def display_id():
 def multiprocess_display_ip():
     p1 = multiprocessing.Process(target=display_id)
     p1.start()
+    while True:
+        pass
 
 
 def read_gebruikers():
@@ -148,18 +166,76 @@ def read_gebruikers():
     # print(list_ids)
     # print(alle_ids)
 
+# Code voor Flask
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'geheim!'
+socketio = SocketIO(app, cors_allowed_origins="*", logger=False,
+                    engineio_logger=False, ping_timeout=1)
 
-try:
-    read_gebruikers()
-    multiprocess_display_ip()
+CORS(app)
+
+
+@socketio.on_error()        # Handles the default namespace
+def error_handler(e):
+    print(e)
+
+
+@app.route('/')
+def hallo():
+    return "Server is running, er zijn momenteel geen API endpoints beschikbaar."
+
+@socketio.on('connect')
+def initial_connection():
+    print('A new client connect')
+    gebruikers = DataRepository.read_gebruikers()
+    emit('Gebruikers',{'gebruikers':gebruikers},broadcast=True)
+
+
+def start_chrome_kiosk():
+    import os
+
+    os.environ['DISPLAY'] = ':0.0'
+    options = webdriver.ChromeOptions()
+    # options.headless = True
+    # options.add_argument("--window-size=1920,1080")
+    options.add_argument(
+        "user-agent=Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36")
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--allow-running-insecure-content')
+    options.add_argument("--disable-extensions")
+    # options.add_argument("--proxy-server='direct://'")
+    options.add_argument("--proxy-bypass-list=*")
+    options.add_argument("--start-maximized")
+    options.add_argument('--disable-gpu')
+    # options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--kiosk')
+    # chrome_options.add_argument('--no-sandbox')
+    # options.add_argument("disable-infobars")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+
+    driver = webdriver.Chrome(options=options)
+    driver.get("http://localhost")
     while True:
-        # servo.ChangeDutyCycle(12)
-        # print('Open')
-        # time.sleep(2)
-        # servo.ChangeDutyCycle(7.5)
-        # print('Toe')
-        # time.sleep(2)
         pass
-finally:
-    init_LCD(0, 0)
-    GPIO.cleanup()
+
+
+def start_chrome_thread():
+    print("**** Starting CHROME ****")
+    chromeThread = threading.Thread(
+    target=start_chrome_kiosk, args=(), daemon=True)
+    chromeThread.start()
+
+
+if __name__ == '__main__':
+    try:
+        read_gebruikers()
+        start_chrome_thread()
+        multiprocess_display_ip()
+        # socketio.run(app, debug=False, host='0.0.0.0')
+    except KeyboardInterrupt as e:
+        print(e)
+    finally:
+        init_LCD(0, 0)
+        GPIO.cleanup()
