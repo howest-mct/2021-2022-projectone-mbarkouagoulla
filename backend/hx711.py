@@ -1,31 +1,104 @@
-import RPi.GPIO as gpio
-import time
+# import RPi.GPIO as GPIO
+# import time
+# GPIO.setmode(GPIO.BCM)
+
+# DT =27
+# SCK=17
 
 
-DT =27
-SCK=17
+# def readCount():
+#   i = 0
+#   Count = 0
+#   GPIO.setup(SCK, GPIO.OUT)
+#   GPIO.setup(DT, GPIO.IN)
+# #   GPIO.output(DT, 1)
+#   GPIO.output(SCK, 0)
+
+#   while GPIO.input(DT) == 1:
+#       i = 0
+#   for i in range(24):
+#       GPIO.output(SCK, 1)
+#       Count = Count << 1
+
+#       GPIO.output(SCK, 0)
+#       #time.sleep(0.001)
+#       if GPIO.input(DT) == 0:
+#           Count = Count+1
+
+#   GPIO.output(SCK, 1)
+#   Count = Count ^ 0x800000
+#   GPIO.output(SCK, 0)
+#   print(Count)
 
 
-def readCount():
-  i = 0
-  Count = 0
-  gpio.setup(DT, gpio.OUT)
-  gpio.output(DT, 1)
-  gpio.output(SCK, 0)
-  gpio.setup(DT, gpio.IN)
+# try:        
+#     while True:
+#         readCount()
+# except KeyboardInterrupt as e:
+#     print(e)
+# finally:
+#     GPIO.cleanup
+#!/usr/bin/env python3
+import RPi.GPIO as GPIO  # import GPIO
+from loadcell import HX711  # import the class HX711
 
-  while gpio.input(DT) == 1:
-      i = 0
-  for i in range(24):
-      gpio.output(SCK, 1)
-      Count = Count << 1
+try:
+    GPIO.setmode(GPIO.BCM)  # set GPIO pin mode to BCM numbering
+    # Create an object hx which represents your real hx711 chip
+    # Required input parameters are only 'dout_pin' and 'pd_sck_pin'
+    hx = HX711(dout_pin=27, pd_sck_pin=17)
+    # measure tare and save the value as offset for current channel
+    # and gain selected. That means channel A and gain 128
+    err = hx.zero()
+    # check if successful
+    if err:
+        raise ValueError('Tare is unsuccessful.')
 
-      gpio.output(SCK, 0)
-      #time.sleep(0.001)
-      if gpio.input(DT) == 0:
-          Count = Count+1
+    reading = hx.get_raw_data_mean()
+    if reading:  # always check if you get correct value or only False
+        # now the value is close to 0
+        print('Data subtracted by offset but still not converted to units:',
+              reading)
+    else:
+        print('invalid data', reading)
 
-  gpio.output(SCK, 1)
-  Count = Count ^ 0x800000
-  gpio.output(SCK, 0)
-  return Count
+    # In order to calculate the conversion ratio to some units, in my case I want grams,
+    # you must have known weight.
+    input('Put known weight on the scale and then press Enter')
+    reading = hx.get_data_mean()
+    if reading:
+        print('Mean value from HX711 subtracted by offset:', reading)
+        known_weight_grams = input(
+            'Write how many grams it was and press Enter: ')
+        try:
+            value = float(known_weight_grams)
+            print(value, 'grams')
+        except ValueError:
+            print('Expected integer or float and I have got:',
+                  known_weight_grams)
+
+        # set scale ratio for particular channel and gain which is
+        # used to calculate the conversion to units. Required argument is only
+        # scale ratio. Without arguments 'channel' and 'gain_A' it sets
+        # the ratio for current channel and gain.
+        ratio = reading / value  # calculate the ratio for channel A and gain 128
+        hx.set_scale_ratio(ratio)  # set ratio for current channel
+        print('Ratio is set.')
+    else:
+        raise ValueError(
+            'Cannot calculate mean value. Try debug mode. Variable reading:', reading)
+
+    # Read data several times and return mean value
+    # subtracted by offset and converted by scale ratio to
+    # desired units. In my case in grams.
+    print("Now, I will read data in infinite loop. To exit press 'CTRL + C'")
+    input('Press Enter to begin reading')
+    print('Current weight on the scale in grams is: ')
+    while True:
+        print(hx.get_weight_mean(20), 'g')
+
+except (KeyboardInterrupt, SystemExit):
+    print('Bye :)')
+
+finally:
+    GPIO.cleanup()

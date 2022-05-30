@@ -307,9 +307,9 @@
   font-size: 1.4rem;
 }
 
-.c-sensor {
+.c-sensor, .c-gebruiker{
   display: flex;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 70px 70px 70px;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 70px 70px 70px; */
   gap: 1.5rem;
   margin: 1rem 0;
   padding-top: 1rem;
@@ -318,27 +318,41 @@
   outline: none;
 }
 
-.c-sensor+.c-sensor {
-  border-top: 1px solid #eee;
+.c-sensor+.c-sensor,.c-gebruiker+.c-gebruiker{
+  border-top: 1px solid burlywood;
   justify-content: space-between;
 }
 
-.c-sensor--header {
+.c-sensor--header, .c-gebruiker--header{
   text-transform: uppercase;
   color: #666;
   font-weight: 600;
   font-size: 0.8rem;
 }
 
-.c-sensor__name {
+.c-gebruiker__header-name,.c-sensor__header-name {
   margin: 0;
   font-size: 1.2rem;
 }
 
-.c-sensor__fname {
+.c-gebruiker__header-fname,.c-sensor__header-datum {
   text-align: center;
 }
 
-.c-sensor__email {
+.c-gebruiker__header-email,.c-sensor__header-datum {
   text-align: center;
+}
+
+.c-gebruiker__name,.c-sensor__name{
+  width: 180px;
+  float: left;
+  padding: 10px;
+  border-right: 1px solid bisque;
+  font-size: 16px;
+}
+
+.c-sensor__datum,.c-sensor__waarde,.c-gebruiker__fname,.c-gebruiker__email{
+    border-left: 1px ;
+    border-right: 1px;
+    padding: 10px;
 }
