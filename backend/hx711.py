@@ -1,59 +1,15 @@
-# import RPi.GPIO as GPIO
-# import time
-# GPIO.setmode(GPIO.BCM)
-
-# DT =27
-# SCK=17
-
-
-# def readCount():
-#   i = 0
-#   Count = 0
-#   GPIO.setup(SCK, GPIO.OUT)
-#   GPIO.setup(DT, GPIO.IN)
-# #   GPIO.output(DT, 1)
-#   GPIO.output(SCK, 0)
-
-#   while GPIO.input(DT) == 1:
-#       i = 0
-#   for i in range(24):
-#       GPIO.output(SCK, 1)
-#       Count = Count << 1
-
-#       GPIO.output(SCK, 0)
-#       #time.sleep(0.001)
-#       if GPIO.input(DT) == 0:
-#           Count = Count+1
-
-#   GPIO.output(SCK, 1)
-#   Count = Count ^ 0x800000
-#   GPIO.output(SCK, 0)
-#   print(Count)
-
-
-# try:        
-#     while True:
-#         readCount()
-# except KeyboardInterrupt as e:
-#     print(e)
-# finally:
-#     GPIO.cleanup
-#!/usr/bin/env python3
 import RPi.GPIO as GPIO  # import GPIO
 from loadcell import HX711  # import the class HX711
 
 try:
-    GPIO.setmode(GPIO.BCM)  # set GPIO pin mode to BCM numbering
-    # Create an object hx which represents your real hx711 chip
-    # Required input parameters are only 'dout_pin' and 'pd_sck_pin'
+    GPIO.setmode(GPIO.BCM)  
     hx = HX711(dout_pin=27, pd_sck_pin=17)
-    # measure tare and save the value as offset for current channel
-    # and gain selected. That means channel A and gain 128
     err = hx.zero()
     # check if successful
     if err:
         raise ValueError('Tare is unsuccessful.')
 
+    # reading = 49342
     reading = hx.get_raw_data_mean()
     if reading:  # always check if you get correct value or only False
         # now the value is close to 0
@@ -65,11 +21,12 @@ try:
     # In order to calculate the conversion ratio to some units, in my case I want grams,
     # you must have known weight.
     input('Put known weight on the scale and then press Enter')
+    # reading = 27590 
     reading = hx.get_data_mean()
     if reading:
         print('Mean value from HX711 subtracted by offset:', reading)
-        known_weight_grams = input(
-            'Write how many grams it was and press Enter: ')
+        # known_weight_grams = 5  
+        known_weight_grams = input('Write how many grams it was and press Enter: ')
         try:
             value = float(known_weight_grams)
             print(value, 'grams')
@@ -96,6 +53,7 @@ try:
     print('Current weight on the scale in grams is: ')
     while True:
         print(hx.get_weight_mean(20), 'g')
+
 
 except (KeyboardInterrupt, SystemExit):
     print('Bye :)')
