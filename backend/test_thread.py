@@ -2,10 +2,12 @@ import time
 import RPi.GPIO as GPIO
 import threading
 import multiprocessing
-from multiprocessing import Value
+
 from mfrc522 import SimpleMFRC522
 from subprocess import check_output
-
+from datetime import datetime
+now = datetime.now()
+correct_format_date = now.strftime("%d/%m/%Y %H:%M:%S")
 from repositories.DataRepository import DataRepository
 from helpers.klasse_lcd import LCD
 from helpers.klasse_servo import SERVO
@@ -13,7 +15,6 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, emit, send
 from flask import Flask, jsonify
 from selenium import webdriver
-from datetime import datetime
 #######IN-OUT raspberry & variabelen#########
 GPIO.setmode(GPIO.BCM)
 lijst_pinnen = [16, 12, 25, 24, 23, 26, 19, 13]
@@ -31,8 +32,6 @@ reader = SimpleMFRC522()
 lcd = LCD(lijst_pinnen, rs_pin, e_pin)
 servo = SERVO(servo_pin)
 #################################
-
-rfid_data = Value('d', 0)
 
 #######GPIO-settings#############
 
@@ -63,14 +62,14 @@ CORS(app)
 
 
 def callback_reedcontact(channel):
-    global waarde,socketio
+    global waarde
     waarde = 1
-    print(f'--->{waarde}')
-    if waarde ==1:
-        now = datetime.now()
-        correct_format_date = now.strftime("%d/%m/%Y %H:%M:%S")
-        socketio.emit('magneetcontact', {'waarde': waarde, "datetime": correct_format_date}, broadcast=True)
-        time.sleep(2)
+    print(waarde)
+    # teller += 1
+    # print(f"YEAS {teller}")
+
+
+socketio.emit("magneetcontact", {'waarde': waarde}, broadcast=True)
 
 GPIO.add_event_detect(reed_contact, GPIO.RISING,
                       callback=callback_reedcontact, bouncetime=1000)
@@ -79,7 +78,7 @@ GPIO.add_event_detect(reed_contact, GPIO.RISING,
 def lcd_ip():
     global show_lan, last_lcd_write  # globale variabelen oproepen in functie
     epoch_time = int(time.time())  # tijd in seconden sinds 1970
-    if (epoch_time - last_lcd_write > 2):  # kijken als het verschil groter is dan 2 seconden
+    if (epoch_time - last_lcd_write > 1):  # kijken als het verschil groter is dan 2 seconden
         if (not show_lan):  # eerst is de variabele show_lan true pas dan false
             # init_LCD(0, 0)
             # write_message(f"WLAN IP-adres:  {ip_adresses[1]}")
@@ -96,9 +95,9 @@ def lcd_ip():
         show_lan = not show_lan
 
 
-def display_id(shared_data):
+def display_id():
     # globale variabele oproepen in functie
-    global last_lcd_write, list_ids
+    global last_lcd_write, list_ids, servo, socketio
     while True:
         id_rfid, text = reader.read_no_block()  # uitlezen van de id_rfid en text
         if (id_rfid is None):  # als er niets wordt uitgelezen
@@ -111,39 +110,22 @@ def display_id(shared_data):
                 lcd.send_instruction(0b10000000 | 0b01000000)
                 lcd.write_message(text.strip())
                 res = DataRepository.read_gebruikers_by_rfid(str(id_rfid))
+                socketio.emit('rfid_gebruiker', {'data':{'id':id_rfid,'datum':correct_format_date}}, broadcast=True)
                 print(f"--> {res['Voornaam']}")
-                shared_data.value = id_rfid
             else:
                 print('Onbekende persoon')
                 lcd.init_LCD(0, 0)
                 lcd.write_message(f"!! Onbekend !!")
             epoch_time = int(time.time())
             last_lcd_write = epoch_time
-            time.sleep(2)
-
-
-def check_process_data():
-    global rfid_data, socketio, servo
-    while True:
-        val = int(rfid_data.value)
-        if val != 0:
-            print(val)
-            rfid_data.value = 0
-            now = datetime.now()
-            correct_format_date = now.strftime("%d/%m/%Y %H:%M:%S")
-            socketio.emit('rfid_gebruiker', {'rfid': val, "datetime": correct_format_date}, broadcast=True)
-            servo.open_deur()
-            time.sleep(1)
-            servo.sluit_deur()
-            time.sleep(1)
 
 
 def multiprocess_display_ip():
-    p1 = multiprocessing.Process(target=display_id, args=(rfid_data,))
-    p1.start()
-    print("**** Starting DISPLAY ****")
-    p1 = threading.Thread(target=check_process_data,
-                          args=(), daemon=True)
+    # p1 = multiprocessing.Process(target=display_id)
+    # p1.start()
+    # print("**** Starting CHROME ****")
+    p1 = threading.Thread(
+        target=display_id, args=(), daemon=True)
     p1.start()
 
 
@@ -212,8 +194,10 @@ def start_chrome_thread():
 
 if __name__ == '__main__':
     try:
+        # servo.open_deur()
+        # servo.sluit_deur()
         read_gebruikers()
-        # start_chrome_thread()
+        start_chrome_thread()
         multiprocess_display_ip()
         socketio.run(app, debug=False, host='0.0.0.0')
     except KeyboardInterrupt as e:
