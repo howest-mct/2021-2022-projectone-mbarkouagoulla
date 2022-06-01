@@ -49,36 +49,59 @@
             <a href="/" class="navbar__links"> Hystoriek </a>
           </li>
           <li class="navbar__btn">
-            <a href="signup.html" class="button"> Log in  </a>
+            <a href="signup.html" class="button"> Log in </a>
           </li>
         </ul>
       </div>
     </nav>
-    <main class="c-content">
-      <h1 class="c-content__title">Hystoriek sensors</h1>
-      <div class="c-sensors-info">
-        <div class="c-sensor c-sensor--header">
-          <div class="c-sensor__header-name">
-            <p>Sensor</p>
-          </div>
-          <div class="c-sensor__header-datum">
-            <p>Datum</p>
-          </div>
-          <div class="c-sensor__header-waarde">
-            <p>Waarde</p>
-          </div>
+    <div class="form-style-10-login js-login u-hidden">
+      <h1>
+        Log in 
+      </h1>
+      <form action="" method="POST">
+        <div class="inner-wrap">
+          <input type="text" name="field1" placeholder="Gebruikersnaam of e-mail" required />
         </div>
-      </div>
-      <div class="c-sensors js-sensors">
-        <span></span>
-        <!-- <div class="c-sensor">
-          <div class="c-sensor__info">
-            <h2 class="c-sensor__name">Sensornaam</h2>
-          </div>
-          <div class="c-sensor__datum">10:00:00</div>
-          <div class="c-sensor__waarde">0/1/True/False</div>
-        </div> -->
-      </div>
-    </main>
+        <div class="inner-wrap">
+          <input type="password" name="field5" placeholder="Wachtwoord" required/>
+        </div>
+        <div class="button-section">
+          <input type="submit" name="Sign Up" value="Log in" />
+        </div>
+      </form>
+    </div>
+    <div class="form-style-10 js-create u-hidden">
+      <h1>
+        Maak een account aan<span
+          >Beheer gemakkelijk je brievenbus via je persoonlijke account!</span
+        >
+      </h1>
+      <form action="" method="POST">
+        <div class="section"><span>1</span>Naam</div>
+        <div class="inner-wrap">
+          <label>Voornaam <input type="text" name="field1" /></label>
+          <label>Familienaam <input type="text" name="field1" /></label>
+        </div>
+
+        <div class="section"><span>2</span>Email & RFID-code</div>
+        <div class="inner-wrap">
+          <label>Email-adres <input type="email" name="field3" /></label>
+          <label>RFID-code <input type="text" name="field4" /></label>
+        </div>
+
+        <div class="section"><span>3</span>Wachtwoord</div>
+        <div class="inner-wrap">
+          <label>Password <input type="password" name="field5" /></label>
+          <label>Bevestig password <input type="password" name="field6" /></label>
+        </div>
+        <div class="button-section">
+          <input type="submit" name="Sign Up" />
+          <span class="privacy-policy">
+            <input class="checkbox" type="checkbox" name="field7" />U gaat akkoord met onze
+            Voorwaarden en Beleid.
+          </span>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

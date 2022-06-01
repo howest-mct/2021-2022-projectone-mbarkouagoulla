@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO  # import GPIO
-from loadcell import HX711  # import the class HX711
-
+from helpers.klasse_hx711 import HX711  # import the class HX711
+import time
 try:
     GPIO.setmode(GPIO.BCM)  
     hx = HX711(dout_pin=27, pd_sck_pin=17)
@@ -53,7 +53,7 @@ try:
     print('Current weight on the scale in grams is: ')
     while True:
         print(hx.get_weight_mean(20), 'g')
-
+        time.sleep(1)
 
 except (KeyboardInterrupt, SystemExit):
     print('Bye :)')
