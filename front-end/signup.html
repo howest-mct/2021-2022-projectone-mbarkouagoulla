@@ -1,107 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="This is my HTML5 boilerplate." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Smart Letterbox</title>
-    <link rel="stylesheet" href="style/screen.css" />
+    <title>Sign up</title>
     <script
       src="https://cdn.socket.io/4.0.1/socket.io.min.js"
       integrity="sha384-LzhRnpGmQP+lOvWruF/lgkcqD+WDVt9fU3H4BWmwP5u5LTmkUGafMcpZKNObVMLU"
       crossorigin="anonymous"
     ></script>
-    <script src="https://kit.fontawesome.com/ad45c53ffe.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style/style.css" />
     <script src="script/app2.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        toggleNav();
-      });
-      function toggleNav() {
-        const menu = document.querySelector('#mobile-menu');
-        const menuLinks = document.querySelector('.navbar__menu');
-        menu.addEventListener('click', function () {
-          menu.classList.toggle('is-active');
-          menuLinks.classList.toggle('active');
-        });
-      }
-    </script>
   </head>
+
   <body>
-    <nav class="navbar">
-      <div class="navbar__container">
-        <a href="index.html" id="navbar__logo"
-          ><i class="fa-solid fa-envelopes-bulk"></i> Smart Letterbox</a
-        >
-        <div class="navbar__toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
+    <div class="c-page js-login-page">
+      <header class="o-row o-row--md o-row--header o-row--neutral-x-light">
+        <div class="o-container">
+          <div class="c-header">
+            <div class="c-header__logo">
+              <h1 class="c-logo">
+                <svg
+                  class="c-logo__symbol"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 512"
+                >
+                  <path
+                    d="M191.9 448.6c-9.766 0-19.48-2.969-27.78-8.891L32 340.2V480c0 17.62 14.38 32 32 32h256c17.62 0 32-14.38 32-32v-139.8L220.2 439.5C211.7 445.6 201.8 448.6 191.9 448.6zM192 192c0-35.25 28.75-64 64-64h224V32c0-17.62-14.38-32-32-32H128C110.4 0 96 14.38 96 32v192h96V192zM320 256H64C46.38 256 32 270.4 32 288v12.18l151 113.8c5.25 3.719 12.7 3.734 18.27-.25L352 300.2V288C352 270.4 337.6 256 320 256zM576 160H256C238.4 160 224 174.4 224 192v32h96c33.25 0 60.63 25.38 63.75 57.88L384 416h192c17.62 0 32-14.38 32-32V192C608 174.4 593.6 160 576 160zM544 288h-64V224h64V288z"
+                  />
+                </svg>
+                <span class="c-logo-titel c-lead--xl"
+                  ><a class="c-logo-home-titel" href="index.html">Smart Letterbox</a></span
+                >
+              </h1>
+            </div>
+            <div class="c-header__nav">
+              <nav class="c-nav c-nav--meta">
+                <ul class="o-list c-nav__list">
+                  <li class="c-nav__item">
+                    <a href="index.html" class="c-nav__link">Home</a>
+                  </li>
+                  <li class="c-nav__item">
+                    <a href="users.html" class="c-nav__link">Users</a>
+                  </li>
+                  <li class="c-nav__item">
+                    <a href="history.html" class="c-nav__link">History</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
         </div>
-        <ul class="navbar__menu">
-          <li class="navbar__item">
-            <a href="/" class="navbar__links"> Home </a>
-          </li>
-          <li class="navbar__item">
-            <a href="gebruikers.html" class="navbar__links"> Gebruikers</a>
-          </li>
-          <li class="navbar__item">
-            <a href="/" class="navbar__links"> Hystoriek </a>
-          </li>
-          <li class="navbar__btn">
-            <a href="signup.html" class="button"> Log in </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="form-style-10-login js-login u-hidden">
-      <h1>
-        Log in 
-      </h1>
-      <form action="" method="POST">
-        <div class="inner-wrap">
-          <input type="text" name="field1" placeholder="Gebruikersnaam of e-mail" required />
+      </header>
+      <section class="o-row o-row--lg o-row--gradient-1">
+        <div class="o-container">
+          <article class="o-section o-section--lg js-login" id="loginview">
+            <div class="o-layout__item u-1-of-2-bp3">
+              <header class="c-title-icon">
+                <h2 class="c-lead c-input-title">
+                  Login to your <br />
+                  Smart Letterbox
+                </h2>
+              </header>
+            </div>
+            <div class="o-layout__item c-input-title">
+              <form action="" method="POST">
+                <div class="c-input">
+                  <input type="text" name="field1" placeholder="Username or e-mail" required />
+                </div>
+                <div class="c-input">
+                  <input type="password" name="field5" placeholder="Password" required />
+                </div>
+                <div class="c-login-button">
+                  <input type="submit" name="Sign Up" value="Log in" />
+                </div>
+              </form>
+            </div>
+            <div class="o-layout__item c-input">
+              <p class="c-lead c-lead--s">
+                Don't have an account yet? <a href="#createview" class="js-signup">Sign up here!</a>
+              </p>
+            </div>
+          </article>
+          <article class="o-section o-section--lg js-create u-hidden" id="createview">
+            <div class="o-layout__item u-1-of-2-bp3">
+              <header class="c-title-icon">
+                <h2 class="c-lead c-input-title">Create an account <br /></h2>
+              </header>
+            </div>
+            <div class="o-layout__item c-input-title">
+              <form class="c-create-form" action="" method="POST">
+                <div class="c-create">
+                  <input type="text" name="fname" placeholder="First Name" required />
+                </div>
+                <div class="c-create">
+                  <input type="text" name="lname" placeholder="Last Name" required />
+                </div>
+                <div class="c-create">
+                  <input type="text" name="email" placeholder="Email" required />
+                </div>
+                <div class="c-create">
+                  <input type="text" name="rdif" placeholder="Scan your RFID-tag" required />
+                </div>
+                <div class="c-create">
+                  <input type="password" name="field5" placeholder="Password" required />
+                </div>
+                <div class="o-layout__item c-input">
+                  <p class="c-lead c-lead--s">
+                    Already have an account? <a href="#loginview" class="js-login-redirect">Log in</a>
+                  </p>
+                </div>
+                <div class="c-create-button">
+                  <input type="submit" name="Sign Up" value="Sign up" />
+                </div>
+              </form>
+            </div>
+          </article>
         </div>
-        <div class="inner-wrap">
-          <input type="password" name="field5" placeholder="Wachtwoord" required/>
+      </section>
+      <footer class="o-row o-row--md o-row--gradient-2">
+        <div class="o-container">
+          <div class="c-footer">
+            <div class="c-footer__logo">
+              <h1 class="c-logo">
+                <svg
+                  class="c-logo__symbol"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 512"
+                >
+                  <path
+                    d="M191.9 448.6c-9.766 0-19.48-2.969-27.78-8.891L32 340.2V480c0 17.62 14.38 32 32 32h256c17.62 0 32-14.38 32-32v-139.8L220.2 439.5C211.7 445.6 201.8 448.6 191.9 448.6zM192 192c0-35.25 28.75-64 64-64h224V32c0-17.62-14.38-32-32-32H128C110.4 0 96 14.38 96 32v192h96V192zM320 256H64C46.38 256 32 270.4 32 288v12.18l151 113.8c5.25 3.719 12.7 3.734 18.27-.25L352 300.2V288C352 270.4 337.6 256 320 256zM576 160H256C238.4 160 224 174.4 224 192v32h96c33.25 0 60.63 25.38 63.75 57.88L384 416h192c17.62 0 32-14.38 32-32V192C608 174.4 593.6 160 576 160zM544 288h-64V224h64V288z"
+                  />
+                </svg>
+              </h1>
+            </div>
+            <div class="c-footer__nav">
+              <nav class="c-nav c-nav--meta">
+                <ul class="o-list c-nav__list">
+                  <li class="c-footer__item">© 2022 Smart Letterbox. All Rights Reserved.</li>
+                </ul>
+              </nav>
+            </div>
+            <div class="c-footer__nav">
+              <nav class="c-nav c-nav--meta">
+                <ul class="o-list c-nav__list">
+                  <li class="c-footer__item">Created By Mbark Ouagoulla</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
         </div>
-        <div class="button-section">
-          <input type="submit" name="Sign Up" value="Log in" />
-        </div>
-      </form>
-    </div>
-    <div class="form-style-10 js-create u-hidden">
-      <h1>
-        Maak een account aan<span
-          >Beheer gemakkelijk je brievenbus via je persoonlijke account!</span
-        >
-      </h1>
-      <form action="" method="POST">
-        <div class="section"><span>1</span>Naam</div>
-        <div class="inner-wrap">
-          <label>Voornaam <input type="text" name="field1" /></label>
-          <label>Familienaam <input type="text" name="field1" /></label>
-        </div>
-
-        <div class="section"><span>2</span>Email & RFID-code</div>
-        <div class="inner-wrap">
-          <label>Email-adres <input type="email" name="field3" /></label>
-          <label>RFID-code <input type="text" name="field4" /></label>
-        </div>
-
-        <div class="section"><span>3</span>Wachtwoord</div>
-        <div class="inner-wrap">
-          <label>Password <input type="password" name="field5" /></label>
-          <label>Bevestig password <input type="password" name="field6" /></label>
-        </div>
-        <div class="button-section">
-          <input type="submit" name="Sign Up" />
-          <span class="privacy-policy">
-            <input class="checkbox" type="checkbox" name="field7" />U gaat akkoord met onze
-            Voorwaarden en Beleid.
-          </span>
-        </div>
-      </form>
+      </footer>
     </div>
   </body>
 </html>

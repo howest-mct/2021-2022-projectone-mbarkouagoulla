@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="This is my HTML5 boilerplate." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Letterbox</title>
+    <title>History</title>
     <script
       src="https://cdn.socket.io/4.0.1/socket.io.min.js"
       integrity="sha384-LzhRnpGmQP+lOvWruF/lgkcqD+WDVt9fU3H4BWmwP5u5LTmkUGafMcpZKNObVMLU"
@@ -13,6 +13,7 @@
     ></script>
     <link rel="stylesheet" href="style/style.css" />
     <script src="script/app2.js"></script>
+
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         toggleNav();
@@ -30,7 +31,7 @@
   </head>
 
   <body>
-    <div class="c-page js-home">
+    <div class="c-page">
       <header class="o-row o-row--md o-row--header o-row--neutral-x-light">
         <div class="o-container">
           <div class="c-header">
@@ -46,9 +47,7 @@
                   />
                 </svg>
                 <span class="c-logo-titel c-lead--xl"
-                  ><a class="c-logo-home-titel" href="/index.html"
-                    >Smart Letterbox</a
-                  ></span
+                  ><a class="c-logo-home-titel" href="dashboard.html">Smart Letterbox</a></span
                 >
               </h1>
             </div>
@@ -56,16 +55,13 @@
               <nav class="c-nav c-nav--meta">
                 <ul class="o-list c-nav__list">
                   <li class="c-nav__item">
-                    <a href="index.html" class="c-nav__link">Home</a>
+                    <a href="dashboard.html" class="c-nav__link">Home</a>
                   </li>
                   <li class="c-nav__item">
                     <a href="users.html" class="c-nav__link">Users</a>
                   </li>
                   <li class="c-nav__item">
-                    <a href="history.html" class="c-nav__link">History</a>
-                  </li>
-                  <li class="c-nav__item">
-                    <a href="signup.html" class="c-nav__link c-nav__link--login">Login</a>
+                    <a href="signup.html" class="c-nav__link c-nav__link--login">Logout</a>
                   </li>
                 </ul>
               </nav>
@@ -86,60 +82,22 @@
       </header>
       <section class="o-row o-row--lg o-row--gradient-1">
         <div class="o-container">
-          <article class="o-section o-section--lg">
-            <div class="o-layout__item u-1-of-2-bp3">
-              <header class="c-title-icon">
-                <h2 class="c-lead c-lead--lg">
-                  Welcome to <br />
-                  Smart Letterbox
-                </h2>
-              </header>
-              <p class="c-lead c-lead--m">
-                With the Smart Letterbox you don't have to check your mail daily, we do it for you!
-                Should there be mail, the Letterbox will send a notification to all registered
-                users.
-              </p>
+          <article class="o-section o-section--xl">
+            <div class="o-layout">
+              <article class="o-layout__item u-1-of-3 u-text-center c-lead--m">Date</article>
+              <article class="o-layout__item u-1-of-3 u-text-center c-lead--m">Name</article>
+              <article class="o-layout__item u-1-of-3 u-text-center c-lead--m">Action</article>
             </div>
           </article>
-          <article class="o-section o-section--lg">
-            <div class="o-layout__item u-1-of-2-bp3">
-              <p class="c-lead c-lead--m">
-                Are you not the person who opened the mail? No problem, you'll get a notification
-                that someone before you has already emptied the mail.
-              </p>
-            </div>
-          </article>
-          <article class="o-section o-section--lg">
-            <div class="o-layout__item u-1-of-2-bp3">
-              <p class="c-lead c-lead--m">
-                You can quickly and easily access your mail using a badge that you scan on the side
-                of your mailbox. No more keys!
-              </p>
-            </div>
-          </article>
-          <article class="o-section o-section--lg">
-            <div class="o-layout__item u-1-of-2-bp3">
-              <p class="c-lead c-lead--m">
-                There is also an option to register users who want access to your mailbox.
-              </p>
-            </div>
-          </article>
-          <article class="o-section o-section--lg">
-            <div class="o-layout__item u-1-of-2-bp3">
-              <p class="c-lead c-lead--m">
-                Through the historic you get an overview of when the letter carrier has come by and
-                when and by whom the mail was emptied.
-              </p>
-            </div>
-          </article>
-          <article class="o-section o-section--lg">
-            <a class="c-login-redirect" href="signup.html">
-              <div class="c-login-redirect-text">Log in</div>
-            </a>
-            <p class="c-lead c-lead--m c-login-redirect">
-              Don't have an account yet?<a href="signup.html#createview" class="js-signup">Sign up here!</a>
-            </p>
-            <div class="o-layout__item u-1-of-2-bp3"></div>
+          <article class="o-section o-section--lg js-historiek">
+            <!-- <div class="o-layout">
+              <article class="o-layout__item u-1-of-3 u-text-center c-lead--s js-datum"></article>
+              <article class="o-layout__item u-1-of-3 u-text-center c-lead--s js-voornaam">
+                Name
+              </article>
+              <article class="o-layout__item u-1-of-3 u-text-center c-lead--s js-action">
+              </article>
+            </div> -->
           </article>
         </div>
       </section>
