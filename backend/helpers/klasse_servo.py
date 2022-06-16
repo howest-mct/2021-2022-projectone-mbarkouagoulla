@@ -15,12 +15,12 @@ class SERVO:
 
     
     def open_deur(self):
-        self.pwm.ChangeDutyCycle(2.5)
+        self.pwm.ChangeDutyCycle(1.6)
         time.sleep(.5)
         self.pwm.ChangeDutyCycle(0)
 
     def sluit_deur(self):
-        self.pwm.ChangeDutyCycle(7.5)
+        self.pwm.ChangeDutyCycle(5.6)
         time.sleep(.5)
         self.pwm.ChangeDutyCycle(0)
         
