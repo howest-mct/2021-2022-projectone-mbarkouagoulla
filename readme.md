@@ -10,12 +10,19 @@ You can see and perform the same actions on the website app. In addition, you ca
 
 ## Content
 
+- Programs
 - Database
 - Back-end
 - Front-end
 - Fritzing
 - Instructables
 
+## Programs
+Before you start, let me introduce you to the languages that have been used for this project.
+-[Python](https://wiki.python.org/moin/BeginnersGuide) is being used for writing the back-end
+-[JS](https://www.w3schools.com/js/) is being used for writing the back-end
+-[HTML](https://www.w3schools.com/html/) creates your website
+-[CSS](https://www.w3schools.com/css/) gives the design to your website
 ## Database
 In this [map](https://github.com/howest-mct/2021-2022-projectone-mbarkouagoulla/tree/master/database-export) you will find the sql-file of my database.
 You can simply download it. After that you will have to open MySQL Workbench and open the sql-file you just downloaded. Just run the sql-script and the database will be generated and will be shown in the sidebar. 
