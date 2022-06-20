@@ -152,7 +152,7 @@ def lcd_ip(servo_status,gewicht_lcd):
                     lcd.init_LCD(0, 0)
                     lcd.write_message(f"WLAN IP-adres:  {ip_adresses[0]}")
             if show_lan:  # dit wordt als eerste afgeprint
-                if gewicht_lcd.value > 2:
+                if gewicht_lcd.value > 2.5:
                     print('GEWICHT')
                     lcd.init_LCD(0, 0)
                     lcd.write_message(f"Open the box    you got mail!")
@@ -345,31 +345,17 @@ def data_gewichtsensor_offset():
     global hx
     global socketio
     global rfid_user
-    # hx.set_offset(-608240)
-    # hx.set_offset(-519802)
-    # hx.set_offset(-522140)
-    # hx.set_offset(-550949)
-    # hx.set_offset(-542296)
-    # hx.set_offset(-542166)
-    # hx.set_offset(-526876)
-    hx.set_offset(-491705)
+    
+    hx.set_offset(-512965)
 
 
-    # reading = 2859
-    # reading = 3110
-    # reading = 2496
-    # reading = 6664
-    # reading = 4128
-    # reading = 1949
-    # reading = 2585
-    # reading = 2583
-    reading = 2193
+    
+    reading = 112129
 
     if reading:
         print('Mean value from HX711 subtracted by offset:', reading)
-        # known_weight_grams = 61
-        # known_weight_grams = 5
-        known_weight_grams = 6
+    
+        known_weight_grams = 228
         try:
             value = float(known_weight_grams)
             print(value, 'grams')
@@ -391,7 +377,7 @@ def data_gewichtsensor_offset():
         print(gewicht)
         now = datetime.now()
         correct_format_date = now.strftime("%d/%m/%Y %H:%M:%S")
-        if gewicht < 3:
+        if gewicht < 2.5:
             # gewicht = 0
             socketio.emit('leegpost', {'waarde': gewicht}, broadcast=True)
             user_id = int(rfid_user.value)
@@ -547,7 +533,7 @@ if __name__ == '__main__':
     try:
         read_gebruikers()
         # start_gewicht_thread()
-        # start_gewicht_thread_offset()
+        start_gewicht_thread_offset()
         start_chrome_thread()
         multiprocess_display_ip()
         socketio.run(app, debug=False, host='0.0.0.0')
