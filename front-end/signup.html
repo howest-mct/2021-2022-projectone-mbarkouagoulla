@@ -12,11 +12,12 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="style/style.css" />
-    <script src="script/app2.js"></script>
+    <script src="script/datahandler.js"></script>
+    <script src="script/app.js"></script>
   </head>
 
   <body>
-    <div class="c-page js-login-page">
+    <div class="c-page">
       <header class="o-row o-row--md o-row--header o-row--neutral-x-light">
         <div class="o-container">
           <div class="c-header">
@@ -56,64 +57,54 @@
       </header>
       <section class="o-row o-row--lg o-row--gradient-1">
         <div class="o-container">
-          <article class="o-section o-section--lg js-login" id="loginview">
+          <article class="o-section o-section--lg js-create" id="createview">
+            <div class="o-layout__item u-1-of-2-bp3 c-confirm-create js-confirm u-hidden">
+              You're succesfully registered! Go to the home page
+            </div>
             <div class="o-layout__item u-1-of-2-bp3">
               <header class="c-title-icon">
                 <h2 class="c-lead c-input-title">
-                  Login to your <br />
-                  Smart Letterbox
+                  Register yourself to <br />
+                  get acces to the letterbox <br />
                 </h2>
-              </header>
-            </div>
-            <div class="o-layout__item c-input-title">
-              <form action="" method="POST">
-                <div class="c-input">
-                  <input type="text" name="field1" placeholder="Username or e-mail" required />
-                </div>
-                <div class="c-input">
-                  <input type="password" name="field5" placeholder="Password" required />
-                </div>
-                <div class="c-login-button">
-                  <input type="submit" name="Sign Up" value="Log in" />
-                </div>
-              </form>
-            </div>
-            <div class="o-layout__item c-input">
-              <p class="c-lead c-lead--s">
-                Don't have an account yet? <a href="#createview" class="js-signup">Sign up here!</a>
-              </p>
-            </div>
-          </article>
-          <article class="o-section o-section--lg js-create u-hidden" id="createview">
-            <div class="o-layout__item u-1-of-2-bp3">
-              <header class="c-title-icon">
-                <h2 class="c-lead c-input-title">Create an account <br /></h2>
               </header>
             </div>
             <div class="o-layout__item c-input-title">
               <form class="c-create-form" action="" method="POST">
                 <div class="c-create">
-                  <input type="text" name="fname" placeholder="First Name" required />
+                  <input
+                    class="js-fname"
+                    type="text"
+                    name="fname"
+                    placeholder="First Name"
+                    required
+                  />
                 </div>
                 <div class="c-create">
-                  <input type="text" name="lname" placeholder="Last Name" required />
+                  <input
+                    class="js-lname"
+                    type="text"
+                    name="lname"
+                    placeholder="Last Name"
+                    required
+                  />
                 </div>
                 <div class="c-create">
-                  <input type="text" name="email" placeholder="Email" required />
+                  <input class="js-email" type="text" name="email" placeholder="Email" required />
                 </div>
                 <div class="c-create">
-                  <input type="text" name="rdif" placeholder="Scan your RFID-tag" required />
-                </div>
-                <div class="c-create">
-                  <input type="password" name="field5" placeholder="Password" required />
-                </div>
-                <div class="o-layout__item c-input">
-                  <p class="c-lead c-lead--s">
-                    Already have an account? <a href="#loginview" class="js-login-redirect">Log in</a>
-                  </p>
+                  <input
+                    class="js-rfid"
+                    type="text"
+                    name="rdif"
+                    placeholder="Scan your RFID-tag"
+                    required
+                    readonly
+                  />
                 </div>
                 <div class="c-create-button">
-                  <input type="submit" name="Sign Up" value="Sign up" />
+                  <div class="js-insert c-create-last">Register</div>
+                  <!-- <div class="js-insert c-create-last"  value="Register" /div> -->
                 </div>
               </form>
             </div>

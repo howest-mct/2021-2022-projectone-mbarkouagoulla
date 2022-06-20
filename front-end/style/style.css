@@ -44,6 +44,11 @@ html {
     -moz-osx-font-smoothing: grayscale;
 }
 
+body{
+    /* display: block; */
+    margin: 0px;
+}
+
 *,
 *:before,
 *:after {
@@ -179,13 +184,12 @@ a {
 a:visited,
 a:active {
     text-decoration: none;
-    color: #3E3EA8;
 }
 
 a:hover,
 a:focus {
     text-decoration: none;
-    color: #3E3EA8;
+    color: black;
 }
 
 /*------------------------------------*\
@@ -205,22 +209,25 @@ a:focus {
     /* New solution! Fixes margin collapsing */
 }
 
+.o-row--header{
+    border-bottom:solid 2px red;
+}
 
 
 /* color modifiers */
 
 .o-row--neutral-x-light {
-    background-color: #70e1f5;
+    background: white;
 }
 
 
 .o-row--gradient-1 {
-    background: linear-gradient(to top, #ffd194 0%, #70e1f5 100%);
+    background: white
     /* color: #fff; */
 }
 
 .o-row--gradient-2 {
-    background: linear-gradient(to top, #70e1f5 0%, #ffd194 100%);
+    background: white;
 }
 
 /* size modifiers */
@@ -489,8 +496,15 @@ a:focus {
 
 
 .c-logo-home-titel {
-    color: #000 !important;
+    color: grey !important;
     font-weight: 600;
+}
+
+.c-delete{
+    cursor: pointer;
+    padding-left: 2rem;
+    position: relative;
+    z-index: 10;
 }
 
 @media (min-width: 768px) {
@@ -591,7 +605,7 @@ a:focus {
     height: 100vh;
     width: 100vw;
     /* background-color: #fff; */
-    background: linear-gradient(to top, #ffd194 0%, #70e1f5 100%);
+    background: white;
     transform: translateX(-100%);
     transition: transform .25s ease;
 }
@@ -771,11 +785,10 @@ a:focus {
 }
 
 .c-nav__link {
+    cursor: pointer;
     text-decoration: none;
     border-radius: 5px;
-    /* background: linear-gradient(to top, #ffd194 0%, #70e1f5 100%); */
-    background: linear-gradient(to top, #70e1f5 0%, #ffd194 100%);
-    background: #A7BCA1;
+    background: #6C7171;
     font-weight: 400;
     display: block;
     padding: 8px;
@@ -785,20 +798,20 @@ a:focus {
 
 .c-nav__link--login {
     border-radius: 5px;
-    /* background: linear-gradient(to top, #ffd194 0%, #70e1f5 100%); */
-    background: #A7BCA1;
+    background: #6C7171;
     color: #fff;
 }
 
 .c-nav__link,
 .c-nav__link:active {
-    color: #035653;
+    color: white
 }
 
 .c-nav__link--meta,
 .c-nav__link--meta:active {
+    cursor: pointer;
     text-decoration: none;
-    color: black;
+    color: red
 }
 
 .is-selected .c-nav__link,
@@ -806,8 +819,8 @@ a:focus {
 .c-nav__link:focus,
 .c-nav__link--login:hover,
 .c-nav__link--login:focus {
-    color: #0C2B56;
-    background: #F77062;
+    color: white;
+    background: red;
 }
 
 @media (min-width: 992px) {
@@ -1076,6 +1089,7 @@ a:focus {
 .c-input-title {
     font-size: 20px;
     line-height: 25px;
+    text-align: center;
 }
 
 
@@ -1096,7 +1110,7 @@ a:focus {
     font-size: 24px;
     display: flex;
     justify-content: center;
-    border: 2px solid #2E606F;
+    border: 2px solid red;
     background-color: #2E606F;
     color: #AAF0AA;
     border-radius: 6px;
@@ -1104,6 +1118,39 @@ a:focus {
 
 .c-create-button {
     padding-top: 20px;
+}
+
+.c-poweroff{
+    cursor: pointer;
+}
+
+.c-create-last{
+    cursor: pointer;
+    text-align: center;
+    width: 10rem;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 2px;
+    display: block;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 4px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border: 2px solid red;
+    color: white;
+    background-color: red;
+}
+
+.c-confirm-create{
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    background-color: #99F7AB;
+    border: solid 1px #99F7AB;
+    border-radius: 6px;
 }
 
 .c-input-title,
@@ -1141,6 +1188,7 @@ a:focus {
 .c-status-items {
     margin-bottom: 10px;
     text-align: center;
+    /* color: red; */
 }
 
 .c-notification-mail,
@@ -1151,6 +1199,15 @@ a:focus {
     justify-content: center;
     margin: 0% 50px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.c-add-user{
+    text-align: center;
+    width: 50%;
+    border-radius: 6px;
+    border: 2px solid red;
+    color: white;
+    background-color: red;
 }
 
 input[type="text"],
@@ -1173,26 +1230,6 @@ input[type="password"] {
 
 }
 
-input[type="submit"] {
-    width: 10rem;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 2px;
-    display: block;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    padding: 4px;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border: 2px solid #1A563F;
-    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
-    color: #A9D66D;
-    background-color: #1A563F;
-    -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
-    -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
-}
 
 .c-create-form+input[type="text"],
 input[type="password"] {
@@ -1226,8 +1263,7 @@ input[type="password"] {
 */
 
 .u-color-primary-light {
-    border: 1px solid #ffd194;
-    color: black;
+    color: white;
 }
 
 .u-color-primary-base {
@@ -1237,15 +1273,16 @@ input[type="password"] {
 .u-color-primary-dark {
     color: #3E3EA8;
 }
-
+.u-color-item{
+    color: red;
+}
 .u-color-warning {
-    background-color: #d3d3d3;
-    background-image: linear-gradient(315deg, #d3d3d3 0%, #ff9ff3 74%);
+    background-color: #c83a3a;
+    color: white;
 }
 
 .u-color-none {
-    background-color: #ffffff;
-    background-image: linear-gradient(315deg, #ffffff 0%, #82bc23 74%);
+    background-color: #d3d3d3;
 }
 
 /*
@@ -1568,6 +1605,14 @@ input[type="password"] {
 .u-text-center {
     text-align: center;
     padding-bottom: 10px;
+}
+.u-pointer{
+    cursor: pointer;
+}
+
+.u-center-button{
+    display: flex;
+    justify-content: center;
 }
 
 @media (min-width: 1200px) {

@@ -77,7 +77,7 @@ class DataRepository:
 
     @staticmethod
     def read_history_action():
-        sql = "SELECT h.datum , g.voornaam , a.ActieBeschrijving from HistoriekActies h join Gebruikers g on h.FK_GebruikerID = g.GebruikerID join Acties a on a.ActieID = h.FK_ActieID"
+        sql = "SELECT h.datum, g.voornaam, a.ActieBeschrijving from HistoriekActies h join Gebruikers g on h.FK_GebruikerID = g.GebruikerID join Acties a on a.ActieID = h.FK_ActieID order by h.datum desc limit 10"
         return Database.get_rows(sql)
 
     @staticmethod
@@ -90,4 +90,16 @@ class DataRepository:
     def add_history_sensors(sensor,datum,waarde):
         sql = "INSERT into HistoriekSensors (FK_SensorID, Datum, Waarde) VALUES (%s, %s, %s)"
         params= [sensor,datum,waarde]
+        return Database.execute_sql(sql,params)
+    
+    @staticmethod
+    def add_gebruiker(naam,voornaam,rfid,email):
+        sql = "INSERT into Gebruikers (Naam,Voornaam,`RFID-code`,`E-mail-adres`) VALUES (%s,%s,%s,%s)"
+        params = [naam,voornaam,rfid,email]
+        return Database.execute_sql(sql,params)
+
+    @staticmethod
+    def delete_user(id):
+        sql = "Delete from Gebruikers where `RFID-code`= %s"
+        params = [id]
         return Database.execute_sql(sql,params)
