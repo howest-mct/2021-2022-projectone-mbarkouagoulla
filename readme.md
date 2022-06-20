@@ -1,25 +1,34 @@
 # Project One - Smart Letter Box
 
-**De inhoud van dit document schrijf je volledig in het Engels**
+The Smart Letterbox is a device that serves the same purpose as a traditional mailbox, only here it is done in a user-friendly way. And all of this with just a few sensors and an LCD display!
 
-Omschrijf het project. Doe dit in het markdown formaat.
-- [Syntax md](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+First of all, you don't have to check your mailbox every day yourself, the Letterbox does it for you! Should there be mail, you will see a notification on the LCD-display.
 
-Hoe kan een externe persoon (die niets weet over de "ProjectOne" opdracht) het project snel runnen op de eigen pc?
-Op github vind je verschillende voorbeelden hoe je een readme.md bestand kan structureren.
-- [Voorbeeld 1](https://github.com/othneildrew/Best-README-Template)
-- [Voorbeeld 2](https://github.com/tsungtwu/flask-example/blob/master/README.md)
-- [Voorbeeld 3](https://github.com/twbs/bootstrap/blob/main/README.md)
-- [Voorbeeld 4](https://www.makeareadme.com/)
+Another feature is that you no longer need keys to access your mailbox. Scan your registered badge and the door opens.
 
-## Inhoud
-Zoals je kan zien is er geen "vaste" structuur voor zo'n document. Je bepaalt zelf hoe je het bestand via markdown structureert. Zorg ervoor dat het document minimaal op volgende vragen een antwoord biedt.
+You can see and perform the same actions on the website app. In addition, you can add new users or delete existing ones to give or deny them access to your mailbox.
 
-- Wat is de structuur van het project?
-- Wat moet er gebeuren met de database? Hoe krijgt de persoon dit up and running?
-- Moeten er settings worden veranderd in de backend code voor de database? 
-- Runt de back- en front-end code direct? Of moeten er nog commando's worden ingegeven?
-- Zijn er poorten die extra aandacht vereisen in de back- en/of front-end code?
+## Content
+
+- Database
+- Back-end
+- Front-end
+- Fritzing
+- Instructables
+
+## Database
+In this [map](https://github.com/howest-mct/2021-2022-projectone-mbarkouagoulla/tree/master/database-export) you will find the sql-file of my database.
+You can simply download it. After that you will have to open MySQL Workbench and open the sql-file you just downloaded. Just run the sql-script and the database will be generated and will be shown in the sidebar. 
+
+## Back-end
+In the backend [map](https://github.com/howest-mct/2021-2022-projectone-mbarkouagoulla/tree/master/backend) are all the scripts prepared for running the application once you've assembled all the components. The main program is the app.py. That's the script that you will have to run. There is also a calibr_servo.py code, this can be used for calibrating the servo-motor if you want to mount it in a different place on the case.
+
+## Front-end
+Here in the [front-end](https://github.com/howest-mct/2021-2022-projectone-mbarkouagoulla/tree/master/front-end) you will have to change nothing. This is just for your information in case you want to know how the website is structured and what pages there are. 
+
+## Fritzing
+[Here](https://github.com/howest-mct/2021-2022-projectone-mbarkouagoulla/tree/master/fritzing_schema) are the schematics located that you can use when assebmling all the components. While assembling and connecting the components, feel free to follow the steps on [Instructables](https://www.instructables.com/Smart-Letterbox-1/)
   
 ## Instructables
-Plaats zeker een link naar de Instructables zodat het project kan nagebouwd worden!
+Before you start with the software and code, do the practical part first! [Instructables](https://www.instructables.com/Smart-Letterbox-1/)
+
