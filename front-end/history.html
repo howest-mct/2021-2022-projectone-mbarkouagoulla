@@ -12,7 +12,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="style/style.css" />
-    <script src="script/app2.js"></script>
+    <script src="script/app.js"></script>
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
@@ -42,12 +42,14 @@
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 640 512"
                 >
-                  <path
-                    d="M191.9 448.6c-9.766 0-19.48-2.969-27.78-8.891L32 340.2V480c0 17.62 14.38 32 32 32h256c17.62 0 32-14.38 32-32v-139.8L220.2 439.5C211.7 445.6 201.8 448.6 191.9 448.6zM192 192c0-35.25 28.75-64 64-64h224V32c0-17.62-14.38-32-32-32H128C110.4 0 96 14.38 96 32v192h96V192zM320 256H64C46.38 256 32 270.4 32 288v12.18l151 113.8c5.25 3.719 12.7 3.734 18.27-.25L352 300.2V288C352 270.4 337.6 256 320 256zM576 160H256C238.4 160 224 174.4 224 192v32h96c33.25 0 60.63 25.38 63.75 57.88L384 416h192c17.62 0 32-14.38 32-32V192C608 174.4 593.6 160 576 160zM544 288h-64V224h64V288z"
-                  />
+                  <a href="index.html">
+                    <path
+                      d="M191.9 448.6c-9.766 0-19.48-2.969-27.78-8.891L32 340.2V480c0 17.62 14.38 32 32 32h256c17.62 0 32-14.38 32-32v-139.8L220.2 439.5C211.7 445.6 201.8 448.6 191.9 448.6zM192 192c0-35.25 28.75-64 64-64h224V32c0-17.62-14.38-32-32-32H128C110.4 0 96 14.38 96 32v192h96V192zM320 256H64C46.38 256 32 270.4 32 288v12.18l151 113.8c5.25 3.719 12.7 3.734 18.27-.25L352 300.2V288C352 270.4 337.6 256 320 256zM576 160H256C238.4 160 224 174.4 224 192v32h96c33.25 0 60.63 25.38 63.75 57.88L384 416h192c17.62 0 32-14.38 32-32V192C608 174.4 593.6 160 576 160zM544 288h-64V224h64V288z"
+                    />
+                  </a>
                 </svg>
                 <span class="c-logo-titel c-lead--xl"
-                  ><a class="c-logo-home-titel" href="dashboard.html">Smart Letterbox</a></span
+                  ><a class="c-logo-home-titel">History</a></span
                 >
               </h1>
             </div>
@@ -55,13 +57,10 @@
               <nav class="c-nav c-nav--meta">
                 <ul class="o-list c-nav__list">
                   <li class="c-nav__item">
-                    <a href="dashboard.html" class="c-nav__link">Home</a>
+                    <a href="index.html" class="c-nav__link">Home</a>
                   </li>
                   <li class="c-nav__item">
                     <a href="users.html" class="c-nav__link">Users</a>
-                  </li>
-                  <li class="c-nav__item">
-                    <a href="signup.html" class="c-nav__link c-nav__link--login">Logout</a>
                   </li>
                 </ul>
               </nav>
@@ -83,6 +82,9 @@
       <section class="o-row o-row--lg o-row--gradient-1">
         <div class="o-container">
           <article class="o-section o-section--xl">
+            <div class="o-layout c-lead--xl">See the latest events here:</div>
+          </article>
+          <article class="o-section o-section--xl">
             <div class="o-layout">
               <article class="o-layout__item u-1-of-3 u-text-center c-lead--m">Date</article>
               <article class="o-layout__item u-1-of-3 u-text-center c-lead--m">Name</article>
@@ -101,7 +103,7 @@
           </article>
         </div>
       </section>
-      <footer class="o-row o-row--md o-row--gradient-2">
+      <footer class="o-row o-row--md o-row--gradient-2 c-footer">
         <div class="o-container">
           <div class="c-footer">
             <div class="c-footer__logo">
@@ -159,17 +161,17 @@
           <nav class="c-nav">
             <ul class="o-list c-nav__list">
               <li class="c-nav__item">
-                <a href="history.html" class="c-nav__link--meta c-lead--lg"
+                <a href="index.html" class="c-nav__link--meta c-lead--lg"
                   ><span
                     ><svg
                       class="c-nav_icon"
                       xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
+                      viewBox="0 0 576 512"
                     >
                       <path
-                        d="M256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C201.7 512 151.2 495 109.7 466.1C95.2 455.1 91.64 436 101.8 421.5C111.9 407 131.8 403.5 146.3 413.6C177.4 435.3 215.2 448 256 448C362 448 448 362 448 256C448 149.1 362 64 256 64C202.1 64 155 85.46 120.2 120.2L151 151C166.1 166.1 155.4 192 134.1 192H24C10.75 192 0 181.3 0 168V57.94C0 36.56 25.85 25.85 40.97 40.97L74.98 74.98C121.3 28.69 185.3 0 255.1 0L256 0zM256 128C269.3 128 280 138.7 280 152V246.1L344.1 311C354.3 320.4 354.3 335.6 344.1 344.1C335.6 354.3 320.4 354.3 311 344.1L239 272.1C234.5 268.5 232 262.4 232 256V152C232 138.7 242.7 128 256 128V128z"
+                        d="M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.6 483.2 483.9 512 448.5 512H128.1C92.75 512 64.09 483.3 64.09 448V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5H575.8zM288 160C252.7 160 224 188.7 224 224C224 259.3 252.7 288 288 288C323.3 288 352 259.3 352 224C352 188.7 323.3 160 288 160zM256 320C211.8 320 176 355.8 176 400C176 408.8 183.2 416 192 416H384C392.8 416 400 408.8 400 400C400 355.8 364.2 320 320 320H256z"
                       /></svg></span
-                  >History</a
+                  >Dashboard</a
                 >
               </li>
               <li class="c-nav__item">
@@ -192,34 +194,6 @@
         <div class="c-mobile-nav__nav">
           <nav class="c-nav">
             <ul class="o-list c-nav__list">
-              <li class="c-nav__item">
-                <a href="index.html" class="c-nav__link--meta c-lead--lg"
-                  ><span
-                    ><svg
-                      class="c-nav_icon"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                    >
-                      <path
-                        d="M160 416H96c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h64c17.67 0 32-14.33 32-32S177.7 32 160 32H96C42.98 32 0 74.98 0 128v256c0 53.02 42.98 96 96 96h64c17.67 0 32-14.33 32-32S177.7 416 160 416zM502.6 233.4l-128-128c-12.51-12.51-32.76-12.49-45.25 0c-12.5 12.5-12.5 32.75 0 45.25L402.8 224H192C174.3 224 160 238.3 160 256s14.31 32 32 32h210.8l-73.38 73.38c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l128-128C515.1 266.1 515.1 245.9 502.6 233.4z"
-                      /></svg></span
-                  >Log out</a
-                >
-              </li>
-              <li class="c-nav__item">
-                <a href="index.html" class="c-nav__link--meta c-lead--lg"
-                  ><span
-                    ><svg
-                      class="c-nav_icon"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                    >
-                      <path
-                        d="M288 256C288 273.7 273.7 288 256 288C238.3 288 224 273.7 224 256V32C224 14.33 238.3 0 256 0C273.7 0 288 14.33 288 32V256zM80 256C80 353.2 158.8 432 256 432C353.2 432 432 353.2 432 256C432 201.6 407.3 152.9 368.5 120.6C354.9 109.3 353 89.13 364.3 75.54C375.6 61.95 395.8 60.1 409.4 71.4C462.2 115.4 496 181.8 496 255.1C496 388.5 388.5 496 256 496C123.5 496 16 388.5 16 255.1C16 181.8 49.75 115.4 102.6 71.4C116.2 60.1 136.4 61.95 147.7 75.54C158.1 89.13 157.1 109.3 143.5 120.6C104.7 152.9 80 201.6 80 256z"
-                      /></svg></span
-                  >Pi Poweroff</a
-                >
-              </li>
             </ul>
           </nav>
         </div>

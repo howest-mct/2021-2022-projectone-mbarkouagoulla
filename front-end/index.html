@@ -5,14 +5,16 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="This is my HTML5 boilerplate." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Letterbox</title>
+    <title>Dashboard</title>
     <script
       src="https://cdn.socket.io/4.0.1/socket.io.min.js"
       integrity="sha384-LzhRnpGmQP+lOvWruF/lgkcqD+WDVt9fU3H4BWmwP5u5LTmkUGafMcpZKNObVMLU"
       crossorigin="anonymous"
     ></script>
+    <!-- <link rel="stylesheet" href="/front-end/style/style.css" /> -->
     <link rel="stylesheet" href="style/style.css" />
-    <script src="script/app2.js"></script>
+    <script src="script/app.js"></script>
+    <!-- <link rel="stylesheet" href="css/normalize.css"> -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         toggleNav();
@@ -30,7 +32,7 @@
   </head>
 
   <body>
-    <div class="c-page js-home">
+    <div class="c-page js-dashboard">
       <header class="o-row o-row--md o-row--header o-row--neutral-x-light">
         <div class="o-container">
           <div class="c-header">
@@ -46,9 +48,7 @@
                   />
                 </svg>
                 <span class="c-logo-titel c-lead--xl"
-                  ><a class="c-logo-home-titel" href="/index.html"
-                    >Smart Letterbox</a
-                  ></span
+                  ><a class="c-logo-home-titel" href="index.html">Smart Letterbox</a></span
                 >
               </h1>
             </div>
@@ -56,16 +56,13 @@
               <nav class="c-nav c-nav--meta">
                 <ul class="o-list c-nav__list">
                   <li class="c-nav__item">
-                    <a href="index.html" class="c-nav__link">Home</a>
-                  </li>
-                  <li class="c-nav__item">
                     <a href="users.html" class="c-nav__link">Users</a>
                   </li>
                   <li class="c-nav__item">
                     <a href="history.html" class="c-nav__link">History</a>
                   </li>
                   <li class="c-nav__item">
-                    <a href="signup.html" class="c-nav__link c-nav__link--login">Login</a>
+                    <div class="c-nav__link js-poweroff c-poweroff">Pi Poweroff</div>
                   </li>
                 </ul>
               </nav>
@@ -87,59 +84,71 @@
       <section class="o-row o-row--lg o-row--gradient-1">
         <div class="o-container">
           <article class="o-section o-section--lg">
-            <div class="o-layout__item u-1-of-2-bp3">
-              <header class="c-title-icon">
-                <h2 class="c-lead c-lead--lg">
-                  Welcome to <br />
-                  Smart Letterbox
-                </h2>
-              </header>
-              <p class="c-lead c-lead--m">
-                With the Smart Letterbox you don't have to check your mail daily, we do it for you!
-                Should there be mail, the Letterbox will send a notification to all registered
-                users.
-              </p>
+            <div class="o-layout__item u-1-of-2-bp3 c-confirm-create js-delete-confirm u-hidden">
+              You've succesfully deleted the user!
+            </div>
+            <div class="o-layout">
+              <article class="o-layout__item u-1-of-2 c-user c-lead--lg">
+                <div>Welcome</div>
+                <div class="js-username">back</div>
+              </article>
+              <article class="o-layout__item u-1-of-2 c-ip-address c-lead--lg">
+                <div>IP-address:</div>
+                <div class="js-ip-address">IP-address</div>
+              </article>
+            </div>
+          </article>
+          <article class="o-section o-section--lg">
+            <div class="c-lead c-lead--lg c-status">Status:</div>
+            <div class="o-layout o-layout--justify-center">
+              <div class="o-layout__item c-status-items">
+                <div class="u-color-item">Mailbox</div>
+                <div class="c-notification js-inside u-color-warning u-color-none">Empty</div>
+              </div>
+              <div class="o-layout__item c-status-items">
+                <div class="u-color-item">Mailbox flap</div>
+                <div class="c-notification js-flap u-color-warning u-color-none">Closed</div>
+              </div>
+              <div class="o-layout__item c-status-items">
+                <div class="u-color-item">Back door</div>
+                <div class="c-notification js-back u-color-warning u-color-none">Closed</div>
+              </div>
             </div>
           </article>
           <article class="o-section o-section--lg">
             <div class="o-layout__item u-1-of-2-bp3">
-              <p class="c-lead c-lead--m">
-                Are you not the person who opened the mail? No problem, you'll get a notification
-                that someone before you has already emptied the mail.
-              </p>
+              <p class="c-lead c-lead--lg u-text-center">Get quick access to your mailbox</p>
             </div>
           </article>
-          <article class="o-section o-section--lg">
-            <div class="o-layout__item u-1-of-2-bp3">
-              <p class="c-lead c-lead--m">
-                You can quickly and easily access your mail using a badge that you scan on the side
-                of your mailbox. No more keys!
-              </p>
+          <article class="o-layout o-layout--align-center">
+            <div class="o-layout__item u-1-of-2 c-icon_command js-open">
+              <div class="o-layout o-layout--column o-layout--align-center u-pointer">
+                <svg
+                  class="o-layout__item u-1-of-2 c-icon_button"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 576 512"
+                >
+                  <path
+                    d="M560 448H512V113.5c0-27.25-21.5-49.5-48-49.5L352 64.01V128h96V512h112c8.875 0 16-7.125 16-15.1v-31.1C576 455.1 568.9 448 560 448zM280.3 1.007l-192 49.75C73.1 54.51 64 67.76 64 82.88V448H16c-8.875 0-16 7.125-16 15.1v31.1C0 504.9 7.125 512 16 512H320V33.13C320 11.63 300.5-4.243 280.3 1.007zM232 288c-13.25 0-24-14.37-24-31.1c0-17.62 10.75-31.1 24-31.1S256 238.4 256 256C256 273.6 245.3 288 232 288z"
+                  />
+                </svg>
+                <div class="o-layout__item u-1-of-2">Open door</div>
+              </div>
             </div>
-          </article>
-          <article class="o-section o-section--lg">
-            <div class="o-layout__item u-1-of-2-bp3">
-              <p class="c-lead c-lead--m">
-                There is also an option to register users who want access to your mailbox.
-              </p>
+            <div class="o-layout__item u-1-of-2 c-icon_command js-close">
+              <div class="o-layout o-layout--column o-layout--align-center u-pointer">
+                <svg
+                  class="o-layout__item u-1-of-2 c-icon_button"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 576 512"
+                >
+                  <path
+                    d="M560 448H480V50.75C480 22.75 458.5 0 432 0h-288C117.5 0 96 22.75 96 50.75V448H16C7.125 448 0 455.1 0 464v32C0 504.9 7.125 512 16 512h544c8.875 0 16-7.125 16-16v-32C576 455.1 568.9 448 560 448zM384 288c-17.62 0-32-14.38-32-32s14.38-32 32-32s32 14.38 32 32S401.6 288 384 288z"
+                  />
+                </svg>
+                <div class="o-layout__item u-1-of-2">Close door</div>
+              </div>
             </div>
-          </article>
-          <article class="o-section o-section--lg">
-            <div class="o-layout__item u-1-of-2-bp3">
-              <p class="c-lead c-lead--m">
-                Through the historic you get an overview of when the letter carrier has come by and
-                when and by whom the mail was emptied.
-              </p>
-            </div>
-          </article>
-          <article class="o-section o-section--lg">
-            <a class="c-login-redirect" href="signup.html">
-              <div class="c-login-redirect-text">Log in</div>
-            </a>
-            <p class="c-lead c-lead--m c-login-redirect">
-              Don't have an account yet?<a href="signup.html#createview" class="js-signup">Sign up here!</a>
-            </p>
-            <div class="o-layout__item u-1-of-2-bp3"></div>
           </article>
         </div>
       </section>
@@ -201,20 +210,6 @@
           <nav class="c-nav">
             <ul class="o-list c-nav__list">
               <li class="c-nav__item">
-                <a href="history.html" class="c-nav__link--meta c-lead--lg"
-                  ><span
-                    ><svg
-                      class="c-nav_icon"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                    >
-                      <path
-                        d="M256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C201.7 512 151.2 495 109.7 466.1C95.2 455.1 91.64 436 101.8 421.5C111.9 407 131.8 403.5 146.3 413.6C177.4 435.3 215.2 448 256 448C362 448 448 362 448 256C448 149.1 362 64 256 64C202.1 64 155 85.46 120.2 120.2L151 151C166.1 166.1 155.4 192 134.1 192H24C10.75 192 0 181.3 0 168V57.94C0 36.56 25.85 25.85 40.97 40.97L74.98 74.98C121.3 28.69 185.3 0 255.1 0L256 0zM256 128C269.3 128 280 138.7 280 152V246.1L344.1 311C354.3 320.4 354.3 335.6 344.1 344.1C335.6 354.3 320.4 354.3 311 344.1L239 272.1C234.5 268.5 232 262.4 232 256V152C232 138.7 242.7 128 256 128V128z"
-                      /></svg></span
-                  >History</a
-                >
-              </li>
-              <li class="c-nav__item">
                 <a href="users.html" class="c-nav__link--meta c-lead--lg"
                   ><span
                     ><svg
@@ -228,14 +223,8 @@
                   >Users</a
                 >
               </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="c-mobile-nav__nav">
-          <nav class="c-nav">
-            <ul class="o-list c-nav__list">
               <li class="c-nav__item">
-                <a href="index.html" class="c-nav__link--meta c-lead--lg"
+                <a href="history.html" class="c-nav__link--meta c-lead--lg"
                   ><span
                     ><svg
                       class="c-nav_icon"
@@ -243,14 +232,20 @@
                       viewBox="0 0 512 512"
                     >
                       <path
-                        d="M160 416H96c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h64c17.67 0 32-14.33 32-32S177.7 32 160 32H96C42.98 32 0 74.98 0 128v256c0 53.02 42.98 96 96 96h64c17.67 0 32-14.33 32-32S177.7 416 160 416zM502.6 233.4l-128-128c-12.51-12.51-32.76-12.49-45.25 0c-12.5 12.5-12.5 32.75 0 45.25L402.8 224H192C174.3 224 160 238.3 160 256s14.31 32 32 32h210.8l-73.38 73.38c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l128-128C515.1 266.1 515.1 245.9 502.6 233.4z"
+                        d="M256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C201.7 512 151.2 495 109.7 466.1C95.2 455.1 91.64 436 101.8 421.5C111.9 407 131.8 403.5 146.3 413.6C177.4 435.3 215.2 448 256 448C362 448 448 362 448 256C448 149.1 362 64 256 64C202.1 64 155 85.46 120.2 120.2L151 151C166.1 166.1 155.4 192 134.1 192H24C10.75 192 0 181.3 0 168V57.94C0 36.56 25.85 25.85 40.97 40.97L74.98 74.98C121.3 28.69 185.3 0 255.1 0L256 0zM256 128C269.3 128 280 138.7 280 152V246.1L344.1 311C354.3 320.4 354.3 335.6 344.1 344.1C335.6 354.3 320.4 354.3 311 344.1L239 272.1C234.5 268.5 232 262.4 232 256V152C232 138.7 242.7 128 256 128V128z"
                       /></svg></span
-                  >Log out</a
+                  >History</a
                 >
               </li>
-              <li class="c-nav__item">
-                <a href="index.html" class="c-nav__link--meta c-lead--lg"
-                  ><span
+            </ul>
+          </nav>
+        </div>
+        <div class="c-mobile-nav__nav">
+          <nav class="c-nav">
+            <ul class="o-list c-nav__list">
+              <li class="c-nav__item js-poweroff c-poweroff">
+                <div class="c-nav__link--meta c-lead--lg">
+                  <span
                     ><svg
                       class="c-nav_icon"
                       xmlns="http://www.w3.org/2000/svg"
@@ -259,8 +254,8 @@
                       <path
                         d="M288 256C288 273.7 273.7 288 256 288C238.3 288 224 273.7 224 256V32C224 14.33 238.3 0 256 0C273.7 0 288 14.33 288 32V256zM80 256C80 353.2 158.8 432 256 432C353.2 432 432 353.2 432 256C432 201.6 407.3 152.9 368.5 120.6C354.9 109.3 353 89.13 364.3 75.54C375.6 61.95 395.8 60.1 409.4 71.4C462.2 115.4 496 181.8 496 255.1C496 388.5 388.5 496 256 496C123.5 496 16 388.5 16 255.1C16 181.8 49.75 115.4 102.6 71.4C116.2 60.1 136.4 61.95 147.7 75.54C158.1 89.13 157.1 109.3 143.5 120.6C104.7 152.9 80 201.6 80 256z"
                       /></svg></span
-                  >Pi Poweroff</a
-                >
+                  >Pi Poweroff
+                </div>
               </li>
             </ul>
           </nav>
